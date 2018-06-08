@@ -617,6 +617,10 @@
       <child xsi:type="archimate:DiagramObject" id="81ddb15e-1d8f-4d72-a680-a0eea7c277cf" targetConnections="151a20d6-0ecc-4df0-a50b-c0d3cf2e9b06 787b2a91-8226-4e97-a22c-a5e801695b3e 8960bcf8-7f57-4647-89c0-09ba5110d18f 1913fa96-fb4f-40f1-9ea6-6d45e5f22922 e6a11d8b-3b91-4700-acc3-d57fb708e72f 980adb98-ea30-4dcc-ad68-8490cbef6dd9 927854c7-5c56-41c7-881f-7e97c9a185e4 d5c01e13-2cd3-435b-8d14-e077d648ff84" archimateElement="586c1d8d-e7cd-4579-b21c-c0e86e901cc7">
         <bounds x="756" y="492" width="120" height="55"/>
       </child>
+      <child xsi:type="archimate:Note" id="8cb0c914-1684-4042-89c5-9041456f0265" textAlignment="1">
+        <bounds x="755" y="236" width="185" height="80"/>
+        <content>The AsIs and ToBe plateaus in this view are show for the understanding of the analysis by the notebook.</content>
+      </child>
     </element>
     <element xsi:type="archimate:ArchimateDiagramModel" name="Technical Infrastructure View" id="3893" viewpoint="13">
       <child xsi:type="archimate:DiagramObject" id="3903" targetConnections="3940" fillColor="#008040" archimateElement="1110">
