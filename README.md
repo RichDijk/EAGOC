@@ -4,6 +4,6 @@ Python notebook for analysing the Gap of Change modelled in ArchiMate. This is p
 # Installation
 Dependencies: Python3 and Pandas
 
-Download or clone this repository to any system running ArchiTool and Python 3.6
-Run 'jupyter notebook ea_goc.ipynb' 
-The default model is the Archisurance model used in many publications.
+- Download or clone this repository to any system running ArchiTool and Python 3.6
+- Run 'jupyter notebook ea_goc.ipynb' 
+- The default model is the Archisurance model used in many publications.
