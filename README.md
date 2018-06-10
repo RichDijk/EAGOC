@@ -8,8 +8,9 @@ Dependencies:
 - Python3
 - Jupyter notebook or lab
 - Pandas
+- optional RISE for the slideshow
 
-- Download or clone this repository to any system running ArchiTool and Python 3.6
+- Download or clone this repository to any system running ArchiTool, Python 3.6 and dependencies
 
 # Use
 - Run 'jupyter notebook ea_goc.ipynb' 
