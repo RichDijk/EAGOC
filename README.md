@@ -3,6 +3,8 @@ Python notebook for analysing the Gap of Change modelled in ArchiMate. This is p
 
 The code is redundant in order to be easy adaptable for certain other analytics.
 
+A first impression is given by ea_goc.slides.html
+
 # Installation
 Dependencies: 
 - Python3
