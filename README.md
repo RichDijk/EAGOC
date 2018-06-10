@@ -3,13 +3,16 @@ Python notebook for analysing the Gap of Change modelled in ArchiMate. This is p
 
 The code is redundant in order to be easy adaptable for certain other analytics.
 
+A first impression is given by ea_goc.slides.html
+
 # Installation
 Dependencies: 
 - Python3
 - Jupyter notebook or lab
 - Pandas
+- optional RISE for the slideshow
 
-- Download or clone this repository to any system running ArchiTool and Python 3.6
+- Download or clone this repository to any system running ArchiTool, Python 3.6 and dependencies
 
 # Use
 - Run 'jupyter notebook ea_goc.ipynb' 
