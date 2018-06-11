@@ -11907,57 +11907,19 @@ a.anchor-link {
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook is part of the thesis R. Dijkstra OU BPMIT and based on the definition of the gap of change 
 visialized in ArchiMate according Bakelaar et al 2017.
-The code is written in a style to match the definition as much as possible.</p>
-<p>This version repports only extended_by and replaced by relations.
-Other version creates also based on new elements and structural relation</p>
+The code is written in a style to match the definition as much as possible. Code is redundant for more better
+readability.</p>
+<p>This version proposes extended_by relations.</p>
 <p>Changes are defined by assigning a component to either AsIs or ToBe.
 Assigning relationships to AsIs or Tobe is only needed when relating components are changed, and
-the change of the relation must be analysed.
-Not all components need to be</p>
-<p>TODO: Add removal of legenda objects, defined as e.g. part of a group called legenda.</p>
+the change of the relation must be analysed.</p>
 
 </div>
 </div>
 </div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Proposed-extended-by-relationships.">Proposed extended by relationships.<a class="anchor-link" href="#Proposed-extended-by-relationships.">&#182;</a></h2>
-</div>
-</div>
-</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Propose extended by relations (based on assigned , composite and direction)</span>
-<span class="c1"># For checking applying GOC in the model</span>
-<span class="c1"># (find relations between changed and new elements)</span>
-<span class="c1"># ---------------------------------------------------------------------------</span>
-<span class="n">set_proposed_extended_by_relations</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">element_key</span> <span class="ow">in</span> <span class="n">set_tobe_elements</span><span class="p">:</span>
-    <span class="n">element</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">element_key</span><span class="p">]</span>
-    <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">changed</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">relation_key</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">relation_tobe_ids</span><span class="p">:</span>
-            <span class="n">relation</span> <span class="o">=</span> <span class="n">relations_dict</span><span class="p">[</span><span class="n">relation_key</span><span class="p">]</span>        
-            <span class="n">source</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">source</span><span class="p">]</span>
-            <span class="n">target</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>    
-
-            <span class="k">if</span> <span class="p">((</span><span class="n">relation</span><span class="o">.</span><span class="n">relation_type</span> <span class="o">==</span> <span class="s1">&#39;CompositionRelationship&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
-                <span class="n">relation</span><span class="o">.</span><span class="n">relation_type</span> <span class="o">==</span> <span class="s1">&#39;AssignmentRelationship&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="n">target</span><span class="o">.</span><span class="n">new</span><span class="p">:</span>
-                <span class="n">set_proposed_extended_by_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relation_key</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Result of the amount of objects and relationships comprising the Gap Of Change </span>
@@ -11976,7 +11938,7 @@ Not all components need to be</p>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[14]:</div>
+<div class="prompt output_prompt">Out[11]:</div>
 
 
 
@@ -12048,10 +12010,244 @@ Not all components need to be</p>
 </div></section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;obsolete object&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>object_type</th>
+      <th>state</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>ApplicationComponent</td>
+      <td>obsolete object</td>
+      <td>Customer Data  Access</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DataObject</td>
+      <td>obsolete object</td>
+      <td>Customer File Data</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;new object&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[13]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>object_type</th>
+      <th>state</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ApplicationComponent</td>
+      <td>new object</td>
+      <td>Custom Data Access</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>DataObject</td>
+      <td>new object</td>
+      <td>Customer File Data V2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;changed object&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>object_type</th>
+      <th>state</th>
+      <th>name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>4</th>
+      <td>ApplicationComponent</td>
+      <td>changed object</td>
+      <td>Risk Assessment</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>DataObject</td>
+      <td>changed object</td>
+      <td>Customer File Data</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>ApplicationComponent</td>
+      <td>changed object</td>
+      <td>Custom Data Access</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>ApplicationComponent</td>
+      <td>changed object</td>
+      <td>Home &amp; Away Policy Administration</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>ApplicationComponent</td>
+      <td>changed object</td>
+      <td>Customer Data  Access</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>DataObject</td>
+      <td>changed object</td>
+      <td>Customer File Data V2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;obsolete relation&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12087,23 +12283,50 @@ Not all components need to be</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>object_type</th>
+      <th>source</th>
+      <th>source_type</th>
+      <th>target</th>
+      <th>target_type</th>
+      <th>relation_type</th>
       <th>state</th>
-      <th>name</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <th>0</th>
+      <td>Customer Data  Access</td>
+      <td>ApplicationComponent</td>
+      <td>Risk Assessment</td>
+      <td>ApplicationComponent</td>
+      <td>ServingRelationship</td>
+      <td>obsolete relation</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Home &amp; Away Policy Administration</td>
+      <td>ApplicationComponent</td>
+      <td>Customer Data  Access</td>
+      <td>ApplicationComponent</td>
+      <td>CompositionRelationship</td>
+      <td>obsolete relation</td>
+    </tr>
+    <tr>
       <th>2</th>
-      <td>DataObject</td>
-      <td>obsolete object</td>
+      <td>Customer Data  Access</td>
+      <td>ApplicationComponent</td>
       <td>Customer File Data</td>
+      <td>DataObject</td>
+      <td>AccessRelationship</td>
+      <td>obsolete relation</td>
     </tr>
     <tr>
       <th>3</th>
+      <td>Policy Data Management</td>
       <td>ApplicationComponent</td>
-      <td>obsolete object</td>
-      <td>Customer Data  Access</td>
+      <td>Insurance Policy Data</td>
+      <td>DataObject</td>
+      <td>AccessRelationship</td>
+      <td>obsolete relation</td>
     </tr>
   </tbody>
 </table>
@@ -12121,7 +12344,7 @@ Not all components need to be</p>
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;new object&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;new relation&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12157,23 +12380,41 @@ Not all components need to be</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>object_type</th>
+      <th>source</th>
+      <th>source_type</th>
+      <th>target</th>
+      <th>target_type</th>
+      <th>relation_type</th>
       <th>state</th>
-      <th>name</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>DataObject</td>
-      <td>new object</td>
+      <th>4</th>
+      <td>Custom Data Access</td>
+      <td>ApplicationComponent</td>
       <td>Customer File Data V2</td>
+      <td>DataObject</td>
+      <td>AccessRelationship</td>
+      <td>new relation</td>
     </tr>
     <tr>
-      <th>1</th>
+      <th>5</th>
+      <td>Home &amp; Away Policy Administration</td>
       <td>ApplicationComponent</td>
-      <td>new object</td>
       <td>Custom Data Access</td>
+      <td>ApplicationComponent</td>
+      <td>CompositionRelationship</td>
+      <td>new relation</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Policy Data Management</td>
+      <td>ApplicationComponent</td>
+      <td>Insurance Policy Data</td>
+      <td>DataObject</td>
+      <td>AccessRelationship</td>
+      <td>new relation</td>
     </tr>
   </tbody>
 </table>
@@ -12191,7 +12432,7 @@ Not all components need to be</p>
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;changed object&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;border relation&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12227,47 +12468,86 @@ Not all components need to be</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>object_type</th>
+      <th>source</th>
+      <th>source_type</th>
+      <th>target</th>
+      <th>target_type</th>
+      <th>relation_type</th>
       <th>state</th>
-      <th>name</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>4</th>
-      <td>DataObject</td>
-      <td>changed object</td>
-      <td>Customer File Data</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>DataObject</td>
-      <td>changed object</td>
-      <td>Customer File Data V2</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>ApplicationComponent</td>
-      <td>changed object</td>
-      <td>Customer Data  Access</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>ApplicationComponent</td>
-      <td>changed object</td>
-      <td>Home &amp; Away Policy Administration</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>ApplicationComponent</td>
-      <td>changed object</td>
-      <td>Risk Assessment</td>
-    </tr>
-    <tr>
       <th>9</th>
+      <td>Financial Application</td>
       <td>ApplicationComponent</td>
-      <td>changed object</td>
-      <td>Custom Data Access</td>
+      <td>Home &amp; Away Policy Administration</td>
+      <td>ApplicationComponent</td>
+      <td>ServingRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Store Policy</td>
+      <td>ApplicationFunction</td>
+      <td>Customer File Data</td>
+      <td>DataObject</td>
+      <td>AccessRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Home &amp; Away Policy Administration</td>
+      <td>ApplicationComponent</td>
+      <td>Policy Data Management</td>
+      <td>ApplicationComponent</td>
+      <td>CompositionRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Home &amp; Away Policy Administration</td>
+      <td>ApplicationComponent</td>
+      <td>Policy Creation Service</td>
+      <td>ApplicationService</td>
+      <td>RealizationRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Risk Assessment</td>
+      <td>ApplicationComponent</td>
+      <td>Web portal</td>
+      <td>ApplicationComponent</td>
+      <td>ServingRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Customer Data  Access</td>
+      <td>ApplicationComponent</td>
+      <td>Call center application</td>
+      <td>ApplicationComponent</td>
+      <td>ServingRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Customer File Data</td>
+      <td>DataObject</td>
+      <td>Customer File</td>
+      <td>BusinessObject</td>
+      <td>RealizationRelationship</td>
+      <td>border relation</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Home &amp; Away Policy Administration</td>
+      <td>ApplicationComponent</td>
+      <td>Claim Data Management</td>
+      <td>ApplicationComponent</td>
+      <td>CompositionRelationship</td>
+      <td>border relation</td>
     </tr>
   </tbody>
 </table>
@@ -12285,7 +12565,7 @@ Not all components need to be</p>
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;obsolete relation&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;border object&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -12321,324 +12601,6 @@ Not all components need to be</p>
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>source</th>
-      <th>source_type</th>
-      <th>target</th>
-      <th>target_type</th>
-      <th>relation_type</th>
-      <th>state</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>Customer Data  Access</td>
-      <td>ApplicationComponent</td>
-      <td>CompositionRelationship</td>
-      <td>obsolete relation</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Customer Data  Access</td>
-      <td>ApplicationComponent</td>
-      <td>Risk Assessment</td>
-      <td>ApplicationComponent</td>
-      <td>ServingRelationship</td>
-      <td>obsolete relation</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Policy Data Management</td>
-      <td>ApplicationComponent</td>
-      <td>Insurance Policy Data</td>
-      <td>DataObject</td>
-      <td>AccessRelationship</td>
-      <td>obsolete relation</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Customer Data  Access</td>
-      <td>ApplicationComponent</td>
-      <td>Customer File Data</td>
-      <td>DataObject</td>
-      <td>AccessRelationship</td>
-      <td>obsolete relation</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;new relation&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[19]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>source</th>
-      <th>source_type</th>
-      <th>target</th>
-      <th>target_type</th>
-      <th>relation_type</th>
-      <th>state</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>4</th>
-      <td>Custom Data Access</td>
-      <td>ApplicationComponent</td>
-      <td>Customer File Data V2</td>
-      <td>DataObject</td>
-      <td>AccessRelationship</td>
-      <td>new relation</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>Custom Data Access</td>
-      <td>ApplicationComponent</td>
-      <td>CompositionRelationship</td>
-      <td>new relation</td>
-    </tr>
-    <tr>
-      <th>6</th>
-      <td>Policy Data Management</td>
-      <td>ApplicationComponent</td>
-      <td>Insurance Policy Data</td>
-      <td>DataObject</td>
-      <td>AccessRelationship</td>
-      <td>new relation</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_relations_df</span><span class="p">[</span><span class="n">goc_relations_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;border relation&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[20]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>source</th>
-      <th>source_type</th>
-      <th>target</th>
-      <th>target_type</th>
-      <th>relation_type</th>
-      <th>state</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>9</th>
-      <td>Customer Data  Access</td>
-      <td>ApplicationComponent</td>
-      <td>Call center application</td>
-      <td>ApplicationComponent</td>
-      <td>ServingRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>10</th>
-      <td>Risk Assessment</td>
-      <td>ApplicationComponent</td>
-      <td>Web portal</td>
-      <td>ApplicationComponent</td>
-      <td>ServingRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>Store Policy</td>
-      <td>ApplicationFunction</td>
-      <td>Customer File Data</td>
-      <td>DataObject</td>
-      <td>AccessRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>Policy Creation Service</td>
-      <td>ApplicationService</td>
-      <td>RealizationRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>Claim Data Management</td>
-      <td>ApplicationComponent</td>
-      <td>CompositionRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td>Customer File Data</td>
-      <td>DataObject</td>
-      <td>Customer File</td>
-      <td>BusinessObject</td>
-      <td>RealizationRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>Policy Data Management</td>
-      <td>ApplicationComponent</td>
-      <td>CompositionRelationship</td>
-      <td>border relation</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>Financial Application</td>
-      <td>ApplicationComponent</td>
-      <td>Home &amp; Away Policy Administration</td>
-      <td>ApplicationComponent</td>
-      <td>ServingRelationship</td>
-      <td>border relation</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div></section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">goc_elements_df</span><span class="p">[</span><span class="n">goc_elements_df</span><span class="o">.</span><span class="n">state</span><span class="o">==</span><span class="s1">&#39;border object&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[21]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
       <th>object_type</th>
       <th>state</th>
       <th>name</th>
@@ -12649,49 +12611,49 @@ Not all components need to be</p>
       <th>126</th>
       <td>ApplicationComponent</td>
       <td>border object</td>
-      <td>Policy Data Management</td>
+      <td>Claim Data Management</td>
     </tr>
     <tr>
       <th>127</th>
-      <td>ApplicationComponent</td>
-      <td>border object</td>
-      <td>Call center application</td>
-    </tr>
-    <tr>
-      <th>128</th>
       <td>BusinessObject</td>
       <td>border object</td>
       <td>Customer File</td>
     </tr>
     <tr>
-      <th>129</th>
-      <td>ApplicationComponent</td>
-      <td>border object</td>
-      <td>Web portal</td>
-    </tr>
-    <tr>
-      <th>130</th>
-      <td>ApplicationComponent</td>
-      <td>border object</td>
-      <td>Claim Data Management</td>
-    </tr>
-    <tr>
-      <th>131</th>
+      <th>128</th>
       <td>ApplicationComponent</td>
       <td>border object</td>
       <td>Financial Application</td>
     </tr>
     <tr>
-      <th>132</th>
+      <th>129</th>
+      <td>ApplicationComponent</td>
+      <td>border object</td>
+      <td>Call center application</td>
+    </tr>
+    <tr>
+      <th>130</th>
+      <td>ApplicationComponent</td>
+      <td>border object</td>
+      <td>Policy Data Management</td>
+    </tr>
+    <tr>
+      <th>131</th>
       <td>ApplicationService</td>
       <td>border object</td>
       <td>Policy Creation Service</td>
     </tr>
     <tr>
-      <th>133</th>
+      <th>132</th>
       <td>ApplicationFunction</td>
       <td>border object</td>
       <td>Store Policy</td>
+    </tr>
+    <tr>
+      <th>133</th>
+      <td>ApplicationComponent</td>
+      <td>border object</td>
+      <td>Web portal</td>
     </tr>
   </tbody>
 </table>
@@ -12708,16 +12670,100 @@ Not all components need to be</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Proposed-extended-by-relationships.">Proposed extended by relationships.<a class="anchor-link" href="#Proposed-extended-by-relationships.">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Propose extended by relations (based on assigned , composite and direction)</span>
+<span class="c1"># For checking applying GOC in the model</span>
+<span class="c1"># (find relations between changed and new elements)</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="n">set_proposed_extended_by_relations</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># []</span>
+<span class="k">for</span> <span class="n">element_key</span> <span class="ow">in</span> <span class="n">set_tobe_elements</span><span class="p">:</span>
+    <span class="n">element</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">element_key</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">element</span><span class="o">.</span><span class="n">changed</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">relation_key</span> <span class="ow">in</span> <span class="n">element</span><span class="o">.</span><span class="n">relation_tobe_ids</span><span class="p">:</span>
+            <span class="n">relation</span> <span class="o">=</span> <span class="n">relations_dict</span><span class="p">[</span><span class="n">relation_key</span><span class="p">]</span>        
+            <span class="n">source</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">source</span><span class="p">]</span>
+            <span class="n">target</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>    
+
+            <span class="k">if</span> <span class="p">((</span><span class="n">relation</span><span class="o">.</span><span class="n">relation_type</span> <span class="o">==</span> <span class="s1">&#39;CompositionRelationship&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span>
+                <span class="n">relation</span><span class="o">.</span><span class="n">relation_type</span> <span class="o">==</span> <span class="s1">&#39;AssignmentRelationship&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="n">target</span><span class="o">.</span><span class="n">new</span><span class="p">:</span>
+                <span class="n">set_proposed_extended_by_relations</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relation_key</span><span class="p">)</span>
+                <span class="c1">#set_proposed_extended_by_relations.append([element.name, element.id, target.name, target.id])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Proposed extended_by relationships:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----------------------------------&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">relation_id</span> <span class="ow">in</span> <span class="n">set_proposed_extended_by_relations</span><span class="p">:</span>
+    <span class="n">relation</span> <span class="o">=</span> <span class="n">relations_dict</span><span class="p">[</span><span class="n">relation_id</span><span class="p">]</span>        
+    <span class="n">source</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">source</span><span class="p">]</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">elements_dict</span><span class="p">[</span><span class="n">relation</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;[</span><span class="si">{relation.relation_type}</span><span class="s2">]: [</span><span class="si">{source.element_type}</span><span class="s2">] </span><span class="si">{source.name}</span><span class="s2"> -&gt; [</span><span class="si">{target.element_type}</span><span class="s2">] </span><span class="si">{target.name}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Proposed extended_by relationships:
+-----------------------------------
+[CompositionRelationship]: [ApplicationComponent] Home &amp; Away Policy Administration -&gt; [ApplicationComponent] Custom Data Access 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Which elements are unchanged and are no border elements</span>
+<span class="c1"># -------------------------------------------------------</span>
+<span class="c1"># for element_id in (set_unchanged_elements - set_border_elements):</span>
+<span class="c1">#     print(elements_dict[element_id])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Print-Gap-of-change-sets.">Print Gap of change sets.<a class="anchor-link" href="#Print-Gap-of-change-sets.">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">rel_set</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">relation_sets</span><span class="p">:</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relationship sets:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------------------&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">rel_set</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">relation_sets</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{state}</span><span class="s2"> = {{{print_relation_set_doc(rel_set)}}} </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 
@@ -12735,10 +12781,12 @@ Not all components need to be</p>
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>obsolete relation = { (Home &amp; Away Policy Administration, Customer Data  Access) [CompositionRelationship], 
- (Customer Data  Access, Risk Assessment) [ServingRelationship], 
- (Policy Data Management, Insurance Policy Data) [AccessRelationship], 
+<pre>Relationship sets:
+------------------
+obsolete relation = { (Customer Data  Access, Risk Assessment) [ServingRelationship], 
+ (Home &amp; Away Policy Administration, Customer Data  Access) [CompositionRelationship], 
  (Customer Data  Access, Customer File Data) [AccessRelationship], 
+ (Policy Data Management, Insurance Policy Data) [AccessRelationship], 
  } 
 
 new relation = { (Custom Data Access, Customer File Data V2) [AccessRelationship], 
@@ -12752,14 +12800,14 @@ extended by relation = { (Home &amp; Away Policy Administration, Custom Data Acc
 replaced by relation = { (Customer Data  Access, Custom Data Access) [AssociationRelationship], 
  } 
 
-border relation = { (Customer Data  Access, Call center application) [ServingRelationship], 
- (Risk Assessment, Web portal) [ServingRelationship], 
+border relation = { (Financial Application, Home &amp; Away Policy Administration) [ServingRelationship], 
  (Store Policy, Customer File Data) [AccessRelationship], 
- (Home &amp; Away Policy Administration, Policy Creation Service) [RealizationRelationship], 
- (Home &amp; Away Policy Administration, Claim Data Management) [CompositionRelationship], 
- (Customer File Data, Customer File) [RealizationRelationship], 
  (Home &amp; Away Policy Administration, Policy Data Management) [CompositionRelationship], 
- (Financial Application, Home &amp; Away Policy Administration) [ServingRelationship], 
+ (Home &amp; Away Policy Administration, Policy Creation Service) [RealizationRelationship], 
+ (Risk Assessment, Web portal) [ServingRelationship], 
+ (Customer Data  Access, Call center application) [ServingRelationship], 
+ (Customer File Data, Customer File) [RealizationRelationship], 
+ (Home &amp; Away Policy Administration, Claim Data Management) [CompositionRelationship], 
  } 
 
 </pre>
@@ -12769,7 +12817,194 @@ border relation = { (Customer Data  Access, Call center application) [ServingRel
 </div>
 </div>
 
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Relationships-sets">Relationships sets<a class="anchor-link" href="#Relationships-sets">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Relationship sets:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------------------&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">el_set</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">element_sets</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{state}</span><span class="s2"> = {{{print_element_set_doc(el_set)}}} </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Relationship sets:
+------------------
+new object = { ApplicationComponent, Custom Data Access, False, True 
+ DataObject, Customer File Data V2, False, True 
+ } 
+
+obsolete object = { ApplicationComponent, Customer Data  Access, True, False 
+ DataObject, Customer File Data, True, False 
+ } 
+
+changed object = { ApplicationComponent, Risk Assessment, True, True 
+ DataObject, Customer File Data, True, False 
+ ApplicationComponent, Custom Data Access, False, True 
+ ApplicationComponent, Home &amp; Away Policy Administration, True, True 
+ ApplicationComponent, Customer Data  Access, True, False 
+ DataObject, Customer File Data V2, False, True 
+ } 
+
+unchanged object = { Principle, Client Satisfaction Goal, False, False 
+ TechnologyService, Network Service, False, False 
+ BusinessProcess, Pay, False, False 
+ BusinessFunction, Claims Handling, False, False 
+ BusinessProcess, Collect Premium, False, False 
+ BusinessRole, Insurant, False, False 
+ BusinessObject, Car Insurance Policy, False, False 
+ ApplicationComponent, CRM System, False, False 
+ BusinessInterface, mail, False, False 
+ Node, Firewall, False, False 
+ BusinessObject, Legal aid  Insurance Policy, False, False 
+ ApplicationService, Claim InfoServ, False, False 
+ BusinessInterface, phone, False, False 
+ ApplicationFunction, Calculate Risk, False, False 
+ ApplicationFunction, Calculate Premium, False, False 
+ SystemSoftware, CICS, False, False 
+ BusinessRole, Customer, False, False 
+ BusinessRole, Customer&#39;s Bank, False, False 
+ BusinessFunction, Financial Handling, False, False 
+ BusinessInterface, phone, False, False 
+ ApplicationFunction, Create Policy, False, False 
+ BusinessFunction, Contracting, False, False 
+ BusinessCollaboration, collaboration, False, False 
+ BusinessActor, Director of Finance, False, False 
+ BusinessActor, Document Processing SSC, False, False 
+ BusinessActor, Front Office, False, False 
+ CommunicationNetwork, BIBIT, False, False 
+ BusinessActor, Director of Operations, False, False 
+ ApplicationComponent, Bank System, False, False 
+ BusinessService, Insurance Application Service, False, False 
+ ApplicationComponent, Claim Data Management, True, True 
+ TechnologyService, File Service, False, False 
+ BusinessProcess, Handle Claim, False, False 
+ Device, Unix Server, False, False 
+ BusinessActor, Product Development, False, False 
+ TechnologyService, Customer File Service, False, False 
+ TechnologyService, Database Service, False, False 
+ ApplicationFunction, Policy Creation, False, False 
+ Principle, Costs Goal, False, False 
+ ApplicationComponent, Policy Data Management, True, True 
+ BusinessProcess, Close Contract, False, False 
+ BusinessProcess, Inform Customer, False, False 
+ BusinessActor, Board, False, False 
+ BusinessEvent, Damage Occured, False, False 
+ BusinessActor, Customer Relations, False, False 
+ Node, Firewall, False, False 
+ BusinessInteraction, Check and  Sign Contract, False, False 
+ BusinessRole, Insurer, False, False 
+ Principle, Licence Principle, False, False 
+ Principle, TCO Goal, False, False 
+ BusinessInterface, GIM, False, False 
+ Principle, Infrastructure Principle, False, False 
+ BusinessActor, Director of Sales, False, False 
+ ApplicationService, CIS, False, False 
+ BusinessRole, Intermediary, False, False 
+ BusinessActor, Car, False, False 
+ BusinessActor, Intermediary Relations, False, False 
+ Principle, Occupancy Principle, False, False 
+ Device, Unix Server, False, False 
+ TechnologyService, Claim Files Service, False, False 
+ Value, Be Insured, False, False 
+ BusinessActor, Home  &amp;  Away, False, False 
+ BusinessCollaboration, Contracting, False, False 
+ BusinessService, Claim Registration Service, False, False 
+ CommunicationNetwork, LAN, False, False 
+ BusinessObject, Damage Claim, False, False 
+ BusinessInterface, e-mail, False, False 
+ BusinessActor, Back Office, False, False 
+ BusinessService, Customer data mutation Service, False, False 
+ Principle, Component Principle, False, False 
+ CommunicationNetwork, LAN, False, False 
+ Node, Unix Server Farm, False, False 
+ BusinessObject, Customer File, False, False 
+ BusinessService, Customer Information Service, False, False 
+ DataObject, Insurance Request Data, False, False 
+ SystemSoftware, DBMS, False, False 
+ BusinessFunction, Asset Management, False, False 
+ BusinessProcess, Accept, False, False 
+ Device, NAS File Server, False, False 
+ BusinessObject, Liability  Insurance Policy, False, False 
+ BusinessActor, Finance, False, False 
+ BusinessObject, Customer, False, False 
+ SystemSoftware, Financial Software, False, False 
+ BusinessObject, Insurance Policy, False, False 
+ SystemSoftware, Message Queing, False, False 
+ BusinessActor, Archisurance, False, False 
+ ApplicationFunction, Store Policy, False, False 
+ ApplicationComponent, Web portal, False, False 
+ DataObject, Damage Claim Data, True, True 
+ Principle, One Stop Principle, False, False 
+ BusinessProcess, Valuate, False, False 
+ BusinessActor, Legal Aid, False, False 
+ ApplicationService, Policy Creation Service, False, False 
+ ApplicationComponent, Financial Application, False, False 
+ ApplicationComponent, Call center application, False, False 
+ BusinessActor, Client, False, False 
+ Device, BIBIT Server, False, False 
+ Principle, Treatment Time Principle, False, False 
+ DataObject, Insurance Policy Data, True, True 
+ BusinessObject, Travel  Insurance Policy, False, False 
+ Node, Mainframe, False, False 
+ BusinessCollaboration, Negotiation, False, False 
+ BusinessObject, Insurance Request, False, False 
+ BusinessObject, Home Insurance Policy, False, False 
+ Device, Admin Server, False, False 
+ BusinessEvent, Request for Insurance, False, False 
+ BusinessProcess, Register, False, False 
+ BusinessFunction, Maintaining Customer Relations, False, False 
+ BusinessFunction, Maintaining Intermediary Relations, False, False 
+ BusinessProcess, Create Contract, False, False 
+ BusinessService, Claims Payment Service, False, False 
+ BusinessService, Premium Payment Service, False, False 
+ BusinessInteraction, Formalise Request, False, False 
+ BusinessActor, HRM, False, False 
+ Representation, Claim Form, False, False 
+ Contract, Travel Insurance Policy, False, False 
+ } 
+
+border object = { ApplicationComponent, Claim Data Management, True, True 
+ BusinessObject, Customer File, False, False 
+ ApplicationComponent, Financial Application, False, False 
+ ApplicationComponent, Call center application, False, False 
+ ApplicationComponent, Policy Data Management, True, True 
+ ApplicationService, Policy Creation Service, False, False 
+ ApplicationFunction, Store Policy, False, False 
+ ApplicationComponent, Web portal, False, False 
+ } 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></section></section>
 </div>
 </div>
 

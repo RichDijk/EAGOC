@@ -1,0 +1,1252 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{ea\_goc}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    This notebook is part of the thesis R. Dijkstra OU BPMIT and based on
+the definition of the gap of change visialized in ArchiMate according
+Bakelaar et al 2017. The code is written in a style to match the
+definition as much as possible. Code is redundant for more better
+readability.
+
+This version proposes extended\_by relations.
+
+Changes are defined by assigning a component to either AsIs or ToBe.
+Assigning relationships to AsIs or Tobe is only needed when relating
+components are changed, and the change of the relation must be analysed.
+\includegraphics{attachment:ApplicationStructureView.JPG}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        
+        \PY{c+c1}{\PYZsh{} Parameters}
+        \PY{n}{PREFIX} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{surance\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}  \PY{c+c1}{\PYZsh{} for importing a the Archisurance model with one change}
+        \PY{c+c1}{\PYZsh{}PREFIX = \PYZsq{}test1\PYZhy{}\PYZsq{}  \PYZsh{} for importing small test model}
+        
+        \PY{n}{NAME\PYZus{}ASIS} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AsIs}\PY{l+s+s1}{\PYZsq{}}
+        \PY{n}{NAME\PYZus{}TOBE} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ToBe}\PY{l+s+s1}{\PYZsq{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{k}{class} \PY{n+nc}{Element}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Element : id, name, type\PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n+nb}{id}\PY{p}{,} \PY{n}{element\PYZus{}type}\PY{p}{,} \PY{n}{name}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id} \PY{o}{=} \PY{n+nb}{id}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{name}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{element\PYZus{}type} \PY{o}{=} \PY{n}{element\PYZus{}type}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relation\PYZus{}other\PYZus{}ids} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{obsolete} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{new} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{changed} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{unchanged} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{border} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o}{=} \PY{k+kc}{False}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{core} \PY{o}{=} \PY{k+kc}{True}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{border} \PY{o}{=} \PY{k+kc}{False}
+                
+            \PY{k}{def} \PY{n+nf}{set\PYZus{}is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{asis}\PY{p}{,} \PY{n}{relations\PYZus{}dict}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} if element has a relation with asis then True}
+                \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                    \PY{k}{if} \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{asis}\PY{o}{.}\PY{n}{id}\PY{p}{)} \PY{o+ow}{or} \PYZbs{}
+                       \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n}{asis}\PY{o}{.}\PY{n}{id} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id}\PY{p}{)}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o}{=} \PY{k+kc}{True}
+         
+            \PY{k}{def} \PY{n+nf}{set\PYZus{}is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n}{tobe}\PY{p}{,} \PY{n}{relations\PYZus{}dict}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} if element has a relation with tobe then True}
+                \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:} 
+                    \PY{k}{if} \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{tobe}\PY{o}{.}\PY{n}{id}\PY{p}{)} \PY{o+ow}{or} \PYZbs{}
+                       \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n}{tobe}\PY{o}{.}\PY{n}{id} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id}\PY{p}{)}\PY{p}{:}
+                        \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o}{=} \PY{k+kc}{True}
+                        
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:} 
+                \PY{k}{return} \PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}self.id\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}self.element\PYZus{}type\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}self.name\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+                    
+                
+        \PY{k}{class} \PY{n+nc}{Relation}\PY{p}{:}
+            \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}Element : id, name, type, source, target\PYZdq{}\PYZdq{}\PYZdq{}}
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}init\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{,} \PY{n+nb}{id}\PY{p}{,} \PY{n}{relation\PYZus{}type}\PY{p}{,} \PY{n}{name}\PY{p}{,} \PY{n}{source}\PY{p}{,} \PY{n}{target}\PY{p}{)}\PY{p}{:}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{name} \PY{o}{=} \PY{n}{name}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{id} \PY{o}{=} \PY{n+nb}{id}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{relation\PYZus{}type} \PY{o}{=} \PY{n}{relation\PYZus{}type}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{source} \PY{o}{=} \PY{n}{source}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{target} \PY{o}{=} \PY{n}{target}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{obsolete} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{new} \PY{o}{=} \PY{k+kc}{False}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{core} \PY{o}{=} \PY{k+kc}{True}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{=} \PY{k+kc}{False}
+                
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{border} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{extended\PYZus{}by} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n+nb+bp}{self}\PY{o}{.}\PY{n}{replaced\PYZus{}by} \PY{o}{=} \PY{k+kc}{False}
+                
+            \PY{k}{def} \PY{n+nf}{\PYZus{}\PYZus{}repr\PYZus{}\PYZus{}}\PY{p}{(}\PY{n+nb+bp}{self}\PY{p}{)}\PY{p}{:}
+                \PY{k}{return} \PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}self.id\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}self.relation\PYZus{}type\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}self.is\PYZus{}part\PYZus{}of\PYZus{}asis\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s1}{                }\PY{l+s+si}{\PYZob{}self.is\PYZus{}part\PYZus{}of\PYZus{}tobe\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+si}{\PYZob{}elements\PYZus{}dict[self.source].name\PYZcb{}}\PY{l+s+s1}{, }\PY{l+s+se}{\PYZbs{}}
+        \PY{l+s+s1}{                }\PY{l+s+si}{\PYZob{}elements\PYZus{}dict[self.target].name\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}
+        
+                
+        \PY{n}{set\PYZus{}asis\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}tobe\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}asis\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}tobe\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}obsolete\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}new\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}border\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}changed\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}unchanged\PYZus{}elements} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}obsolete\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}new\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        
+        \PY{n}{set\PYZus{}extended\PYZus{}by\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}replaced\PYZus{}by\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+        \PY{n}{set\PYZus{}border\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} Import ArchiMate model from Architool exports.}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{df\PYZus{}elements} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}PREFIX\PYZcb{}}\PY{l+s+s1}{elements.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{elements\PYZus{}dict} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{index}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{df\PYZus{}elements}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{e} \PY{o}{=} \PY{n}{Element}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{ID}\PY{p}{,} \PY{n}{element}\PY{o}{.}\PY{n}{Type}\PY{p}{,} \PY{n}{element}\PY{o}{.}\PY{n}{Name}\PY{p}{)}
+            \PY{k}{if} \PY{p}{(}\PY{n}{e}\PY{o}{.}\PY{n}{element\PYZus{}type} \PY{o+ow}{not} \PY{o+ow}{in} \PYZbs{}
+                \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ArchimateModel}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Goal}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Stakeholder}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Constraint}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Requirement}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Driver}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} Deny non\PYZhy{}core \PYZsq{}Plateau\PYZsq{} and other non\PYZhy{}core concepts for defining changed}
+                \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{e}\PY{o}{.}\PY{n}{id}\PY{p}{]} \PY{o}{=} \PY{n}{e}
+                        
+        
+        \PY{c+c1}{\PYZsh{} Create asis and tobe object for further use}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n+nb}{id}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{name} \PY{o}{==} \PY{n}{NAME\PYZus{}TOBE}\PY{p}{:} \PY{c+c1}{\PYZsh{} and element.element\PYZus{}type == \PYZsq{}Plateau\PYZsq{}:}
+                \PY{n}{tobe} \PY{o}{=} \PY{n}{element}
+        
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{name} \PY{o}{==} \PY{n}{NAME\PYZus{}ASIS}\PY{p}{:}\PY{c+c1}{\PYZsh{} and element.element\PYZus{}type == \PYZsq{}Plateau\PYZsq{}:}
+                \PY{n}{asis} \PY{o}{=} \PY{n}{element}
+        
+        \PY{c+c1}{\PYZsh{} Import relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{df\PYZus{}relations} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+si}{\PYZob{}PREFIX\PYZcb{}}\PY{l+s+s1}{relations.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{relations\PYZus{}dict} \PY{o}{=} \PY{n+nb}{dict}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{index}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{df\PYZus{}relations}\PY{o}{.}\PY{n}{iterrows}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{Source} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{Target} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{n}{r} \PY{o}{=} \PY{n}{Relation}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{ID}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Type}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Name}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Source}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Target}\PY{p}{)}
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{Name} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{replaced by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{extended by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} Exclude these GOC relations from the ArchiMate standard model.}
+                    \PY{n}{r}\PY{o}{.}\PY{n}{core} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{r}\PY{o}{.}\PY{n}{id}\PY{p}{]}\PY{o}{=}\PY{n}{r}
+                
+            \PY{c+c1}{\PYZsh{} Relation may exist between relations and elements, source is relation}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{Source} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{Target} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{keys}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{n}{r} \PY{o}{=} \PY{n}{Relation}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{ID}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Type}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Name}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Source}\PY{p}{,} \PY{n}{relation}\PY{o}{.}\PY{n}{Target}\PY{p}{)}
+                \PY{n}{r}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{=} \PY{k+kc}{True}
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{Name} \PY{o+ow}{in} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{replaced by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{extended by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o+ow}{or} \PYZbs{}
+                        \PY{p}{(}\PY{n}{r}\PY{o}{.}\PY{n}{target} \PY{o+ow}{in} \PY{p}{[}\PY{n}{asis}\PY{o}{.}\PY{n}{id}\PY{p}{,} \PY{n}{tobe}\PY{o}{.}\PY{n}{id}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                    \PY{c+c1}{\PYZsh{} Exclude these GOC relations from the ArchiMate standard model.}
+                    \PY{n}{r}\PY{o}{.}\PY{n}{core} \PY{o}{=} \PY{k+kc}{False}
+                \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{r}\PY{o}{.}\PY{n}{id}\PY{p}{]}\PY{o}{=}\PY{n}{r}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:}  
+        \PY{c+c1}{\PYZsh{} Set part of asis/tobe attribute}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{n}{element}\PY{o}{.}\PY{n}{set\PYZus{}is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{(}\PY{n}{asis}\PY{p}{,} \PY{n}{relations\PYZus{}dict}\PY{p}{)}
+            \PY{n}{element}\PY{o}{.}\PY{n}{set\PYZus{}is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{(}\PY{n}{tobe}\PY{p}{,} \PY{n}{relations\PYZus{}dict}\PY{p}{)}
+        
+            
+        \PY{c+c1}{\PYZsh{} Create set of asis elements}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{:}
+                \PY{n}{set\PYZus{}asis\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{:}
+                \PY{n}{set\PYZus{}tobe\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Find and set extended\PYZus{}by relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} Assiciations or specialisations with the name \PYZsq{}extended by\PYZsq{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{name} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{extended by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{relation}\PY{o}{.}\PY{n}{extended\PYZus{}by} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{relation}\PY{o}{.}\PY{n}{extended\PYZus{}by} \PY{o}{=} \PY{k+kc}{False}
+            
+            
+        \PY{c+c1}{\PYZsh{} Find and set replaced\PYZus{}by relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{c+c1}{\PYZsh{} Assiciations or specialisations with the name \PYZsq{}replaced by\PYZsq{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{name} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{replaced by}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}
+                \PY{n}{relation}\PY{o}{.}\PY{n}{replaced\PYZus{}by} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{relation}\PY{o}{.}\PY{n}{replaced\PYZus{}by} \PY{o}{=} \PY{k+kc}{False}
+        
+                
+        \PY{c+c1}{\PYZsh{} Assign relation to asis and/or to be based on source and target elements, }
+        \PY{c+c1}{\PYZsh{} relation to plateau is not needed.}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} relation ids may also be source and or target}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                \PY{k}{if} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o+ow}{and} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{:}
+                    \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o}{=} \PY{k+kc}{True}
+                \PY{k}{if} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o+ow}{and} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{:}
+                    \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{else}\PY{p}{:} 
+                \PY{c+c1}{\PYZsh{} When relation to relation is processed, the source relation is the relevant model relation}
+                \PY{n}{arch\PYZus{}relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{asis}\PY{o}{.}\PY{n}{id}\PY{p}{:}
+                    \PY{n}{arch\PYZus{}relation}\PY{o}{.}\PY{n}{obsolete} \PY{o}{=} \PY{k+kc}{True}
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{tobe}\PY{o}{.}\PY{n}{id}\PY{p}{:}
+                    \PY{n}{arch\PYZus{}relation}\PY{o}{.}\PY{n}{new} \PY{o}{=} \PY{k+kc}{True}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+c1}{\PYZsh{} Create Rasis and Rtobe }
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}asis\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}tobe\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+                
+                
+        \PY{c+c1}{\PYZsh{} Add relations to elements: from and to}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{element\PYZus{}key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{for} \PY{n}{relation\PYZus{}key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+        \PY{c+c1}{\PYZsh{}         \PYZus{}target = elements\PYZus{}dict[relation.target]}
+        \PY{c+c1}{\PYZsh{}         \PYZus{}source = elements\PYZus{}dict[relation.source]}
+                \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PYZbs{}
+                        \PY{o+ow}{and} \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id} \PY{o+ow}{or} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}key}\PY{p}{)}
+                \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe} \PYZbs{}
+                        \PY{o+ow}{and} \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id} \PY{o+ow}{or} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}key}\PY{p}{)}
+                \PY{k}{if} \PY{p}{(}\PY{o+ow}{not} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{o+ow}{not} \PY{n}{relation}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis}\PY{p}{)} \PYZbs{}
+                        \PY{o+ow}{and} \PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{source} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id} \PY{o+ow}{or} \PY{n}{relation}\PY{o}{.}\PY{n}{target} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}\PY{p}{:}
+                    \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}other\PYZus{}ids}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}key}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{} Set unchanged elements as such, partly because later set to changed relations may add elements.}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+           
+            \PY{k}{if} \PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids} \PY{o}{==} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids}\PY{p}{)} \PY{o+ow}{and} \PYZbs{}
+                    \PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{element\PYZus{}type} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Plateau}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{element}\PY{o}{.}\PY{n}{unchanged} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{element}\PY{o}{.}\PY{n}{unchanged} \PY{o}{=} \PY{k+kc}{False}
+                
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids} \PY{o}{!=} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids} \PY{o+ow}{and} \PYZbs{}
+                    \PY{p}{(}\PY{o+ow}{not} \PY{n}{element}\PY{o}{.}\PY{n}{new}\PY{p}{)} \PY{o+ow}{and} \PY{p}{(}\PY{o+ow}{not} \PY{n}{element}\PY{o}{.}\PY{n}{obsolete}\PY{p}{)} \PY{o+ow}{and} \PYZbs{}
+                    \PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{element\PYZus{}type} \PY{o}{!=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Plateau}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+                \PY{n}{element}\PY{o}{.}\PY{n}{changed} \PY{o}{=} \PY{k+kc}{True}
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{element}\PY{o}{.}\PY{n}{changed} \PY{o}{=} \PY{k+kc}{False}
+        
+        
+                        
+        \PY{c+c1}{\PYZsh{} Set obsolete elements as such}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}element.set\PYZus{}obsolete()}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o+ow}{and} \PY{o+ow}{not} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{:}
+                \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{obsolete} \PY{o}{=} \PY{k+kc}{True}
+                
+            
+        \PY{c+c1}{\PYZsh{} Set new elements as such}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}element.set\PYZus{}new()}
+            \PY{k}{if} \PY{o+ow}{not} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}asis} \PY{o+ow}{and} \PY{n}{element}\PY{o}{.}\PY{n}{is\PYZus{}part\PYZus{}of\PYZus{}tobe}\PY{p}{:}
+                \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{key}\PY{p}{]}\PY{o}{.}\PY{n}{new} \PY{o}{=} \PY{k+kc}{True}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+c1}{\PYZsh{} Set asis relationships to obsolete when element is obsolete}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{element\PYZus{}id} \PY{o+ow}{in} \PY{n}{set\PYZus{}asis\PYZus{}elements}\PY{p}{:}
+            \PY{n}{element} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{element\PYZus{}id}\PY{p}{]}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{obsolete} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{k}{for} \PY{n}{relation\PYZus{}id} \PY{o+ow}{in} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids}\PY{p}{:}
+                    \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}id}\PY{p}{]}\PY{o}{.}\PY{n}{obsolete} \PY{o}{=} \PY{k+kc}{True}
+        
+                    
+        \PY{c+c1}{\PYZsh{} Set tobe relationships to new when element is new}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{element\PYZus{}id} \PY{o+ow}{in} \PY{n}{set\PYZus{}tobe\PYZus{}elements}\PY{p}{:}
+            \PY{n}{element} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{element\PYZus{}id}\PY{p}{]}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{new} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{k}{for} \PY{n}{relation\PYZus{}id} \PY{o+ow}{in} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids}\PY{p}{:}
+                    \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}id}\PY{p}{]}\PY{o}{.}\PY{n}{new} \PY{o}{=} \PY{k+kc}{True}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{c+c1}{\PYZsh{} Set border attribute (When unchanged and having relation to changed object or new or obsolete object)}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{element\PYZus{}key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{} For modelling only a part of a larger EA, border elements do not have to be part of AsIs}
+            \PY{k}{for} \PY{n}{relation\PYZus{}key} \PY{o+ow}{in} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}asis\PYZus{}ids} \PY{o}{|} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids} \PY{o}{|} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}other\PYZus{}ids}\PY{p}{:}
+            \PY{c+c1}{\PYZsh{}for relation\PYZus{}key, relation in relations\PYZus{}dict.items():}
+                \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}key}\PY{p}{]}
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                    \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}key}\PY{p}{]}
+                    \PY{n}{source} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                    \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}
+                    
+                \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                    \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}key}\PY{p}{]}
+                    \PY{n}{source} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}\PY{c+c1}{\PYZsh{}}
+                    \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}   
+                    \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{new} \PY{o}{==} \PY{k+kc}{True} \PY{o+ow}{or} \PY{n}{relation}\PY{o}{.}\PY{n}{obsolete} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                        \PY{c+c1}{\PYZsh{} relation from relation to tobe or asis}
+                        \PY{n}{source}\PY{o}{.}\PY{n}{changed} \PY{o}{=} \PY{k+kc}{True}
+                        \PY{n}{target}\PY{o}{.}\PY{n}{changed} \PY{o}{=} \PY{k+kc}{True}
+                    
+                \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{unchanged} \PY{o+ow}{and} \PY{p}{(}\PY{n}{target}\PY{o}{.}\PY{n}{changed} \PY{o+ow}{or} \PY{n}{source}\PY{o}{.}\PY{n}{changed}\PY{p}{)}\PY{p}{:} 
+                    \PY{n}{element}\PY{o}{.}\PY{n}{border} \PY{o}{=} \PY{k+kc}{True}
+                    \PY{n}{relation}\PY{o}{.}\PY{n}{border} \PY{o}{=} \PY{k+kc}{True}
+                    \PY{c+c1}{\PYZsh{}relations\PYZus{}dict[relation\PYZus{}key].border = True, changed to relation.border}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{} Create set obsolete elements}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{obsolete} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}obsolete\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+                
+        \PY{c+c1}{\PYZsh{} Create set new elements}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{new} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}new\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+                
+        
+        \PY{c+c1}{\PYZsh{} Create set changed elements}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{changed} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}changed\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+                
+        \PY{c+c1}{\PYZsh{} Create set unchanged elements}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{unchanged} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}unchanged\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+                
+        \PY{c+c1}{\PYZsh{} Create set border elements, can be element without being part of AsIs}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{element} \PY{o+ow}{in} \PY{n}{elements\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{border} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}border\PYZus{}elements}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{element}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+                
+                
+        \PY{c+c1}{\PYZsh{} Create set replaced by relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{replaced\PYZus{}by} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}replaced\PYZus{}by\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+                
+                
+        \PY{c+c1}{\PYZsh{} Create set extended by relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{extended\PYZus{}by} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}extended\PYZus{}by\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+                
+        \PY{c+c1}{\PYZsh{} Create set border relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{key}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{border} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}border\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{id}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{}Create set obsolete relationships}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{relation\PYZus{}id}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{obsolete} \PY{o}{==} \PY{k+kc}{True} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{core} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}obsolete\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}id}\PY{p}{)}
+        
+        
+        \PY{c+c1}{\PYZsh{} Create set new relationships}
+        \PY{c+c1}{\PYZsh{} Exclude non\PYZhy{}core relationships extended by and replaced by}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{k}{for} \PY{n}{relation\PYZus{}id}\PY{p}{,} \PY{n}{relation} \PY{o+ow}{in} \PY{n}{relations\PYZus{}dict}\PY{o}{.}\PY{n}{items}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{new} \PY{o}{==} \PY{k+kc}{True} \PY{o+ow}{and} \PY{n}{relation}\PY{o}{.}\PY{n}{core} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                \PY{n}{set\PYZus{}new\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}id}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+c1}{\PYZsh{} Create dataframe for printing and counting}
+        \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+        \PY{n}{relation\PYZus{}df\PYZus{}columns} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{source}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{source\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{target\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relation\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+        \PY{n}{goc\PYZus{}elements\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+        \PY{n}{goc\PYZus{}relations\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{relation\PYZus{}df\PYZus{}columns}\PY{p}{)}
+        
+        \PY{n}{element\PYZus{}sets} \PY{o}{=}   \PY{p}{[}\PY{p}{(}\PY{n}{set\PYZus{}new\PYZus{}elements}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,} 
+                         \PY{p}{(}\PY{n}{set\PYZus{}obsolete\PYZus{}elements}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                         \PY{p}{(}\PY{n}{set\PYZus{}changed\PYZus{}elements}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                         \PY{p}{(}\PY{n}{set\PYZus{}unchanged\PYZus{}elements}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{unchanged object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                         \PY{p}{(}\PY{n}{set\PYZus{}border\PYZus{}elements}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{border object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+        
+        \PY{n}{relation\PYZus{}sets} \PY{o}{=} \PY{p}{[}\PY{p}{(}\PY{n}{set\PYZus{}obsolete\PYZus{}relations}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                             \PY{p}{(}\PY{n}{set\PYZus{}new\PYZus{}relations}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                             \PY{p}{(}\PY{n}{set\PYZus{}extended\PYZus{}by\PYZus{}relations}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{extended by relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                             \PY{p}{(}\PY{n}{set\PYZus{}replaced\PYZus{}by\PYZus{}relations}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{replaced by relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{,}
+                             \PY{p}{(}\PY{n}{set\PYZus{}border\PYZus{}relations}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{border relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{]}
+        
+        \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}set}\PY{p}{,} \PY{n}{state}\PY{p}{)} \PY{o+ow}{in} \PY{n}{element\PYZus{}sets}\PY{p}{:}
+            \PY{n}{new\PYZus{}rows} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{element\PYZus{}id} \PY{o+ow}{in} \PY{n}{\PYZus{}set}\PY{p}{:}
+                \PY{n}{element} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{element\PYZus{}id}\PY{p}{]}
+                \PY{n}{new\PYZus{}rows}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{element}\PY{o}{.}\PY{n}{name}\PY{p}{,} \PY{n}{element}\PY{o}{.}\PY{n}{element\PYZus{}type}\PY{p}{,} \PY{n}{state}\PY{p}{]}\PY{p}{)}
+            \PY{n}{df\PYZus{}set} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{new\PYZus{}rows}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+            \PY{n}{goc\PYZus{}elements\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{p}{,} \PY{n}{df\PYZus{}set}\PY{p}{]}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{ignore\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            
+        \PY{k}{for} \PY{p}{(}\PY{n}{\PYZus{}set}\PY{p}{,} \PY{n}{state}\PY{p}{)} \PY{o+ow}{in} \PY{n}{relation\PYZus{}sets}\PY{p}{:}
+            \PY{n}{new\PYZus{}rows} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+            \PY{k}{for} \PY{n}{relation\PYZus{}id} \PY{o+ow}{in} \PY{n}{\PYZus{}set}\PY{p}{:}
+                \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}id}\PY{p}{]}
+                \PY{c+c1}{\PYZsh{}new\PYZus{}rows.append([relation.name, relation.relation\PYZus{}type, state])}
+                \PY{n}{source} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}    
+                \PY{n}{new\PYZus{}rows}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{p}{[}\PY{n}{source}\PY{o}{.}\PY{n}{name}\PY{p}{,} \PY{n}{source}\PY{o}{.}\PY{n}{element\PYZus{}type}\PY{p}{,} \PY{n}{target}\PY{o}{.}\PY{n}{name}\PY{p}{,} \PY{n}{target}\PY{o}{.}\PY{n}{element\PYZus{}type}\PY{p}{,} 
+                                 \PY{n}{relation}\PY{o}{.}\PY{n}{relation\PYZus{}type}\PY{p}{,} \PY{n}{state}\PY{p}{]}\PY{p}{)}
+            \PY{n}{df\PYZus{}set} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data}\PY{o}{=}\PY{n}{new\PYZus{}rows}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{n}{relation\PYZus{}df\PYZus{}columns}\PY{p}{)} \PY{c+c1}{\PYZsh{}[\PYZsq{}name\PYZsq{}, \PYZsq{}relation\PYZus{}type\PYZsq{}, \PYZsq{}state\PYZsq{}])}
+            \PY{n}{goc\PYZus{}relations\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{p}{,} \PY{n}{df\PYZus{}set}\PY{p}{]}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{ignore\PYZus{}index}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+                
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{c+c1}{\PYZsh{} reporting results}
+         \PY{c+c1}{\PYZsh{} These quantities are including border relations to other layers.}
+         \PY{c+c1}{\PYZsh{} The code should be configurable for counting within the layer or also outside the layer. }
+         \PY{c+c1}{\PYZsh{} Double counting is prevented through using sets which cannot contain doubles.}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{n}{count\PYZus{}df1} \PY{o}{=} \PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{object\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{n}{count\PYZus{}df1}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{count\PYZus{}df2} \PY{o}{=} \PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{state}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{relation\PYZus{}type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+         \PY{n}{count\PYZus{}df2}\PY{o}{.}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{count}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{n}{count\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{concat}\PY{p}{(}\PY{p}{[}\PY{n}{count\PYZus{}df1}\PY{p}{,} \PY{n}{count\PYZus{}df2}\PY{p}{]}\PY{p}{,} \PY{n}{sort}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Result of the amount of objects and relationships comprising the Gap Of Change }
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{n}{count\PYZus{}df}\PY{o}{.}\PY{n}{loc}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                       \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{border relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:}                   count
+         state                  
+         obsolete object       2
+         new object            2
+         changed object        6
+         obsolete relation     4
+         new relation          3
+         border relation       8
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}12}]:}             object\_type            state                   name
+         2  ApplicationComponent  obsolete object  Customer Data  Access
+         3            DataObject  obsolete object     Customer File Data
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}13}]:}             object\_type       state                   name
+         0  ApplicationComponent  new object     Custom Data Access
+         1            DataObject  new object  Customer File Data V2
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{changed object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}14}]:}             object\_type           state                               name
+         4  ApplicationComponent  changed object                    Risk Assessment
+         5            DataObject  changed object                 Customer File Data
+         6  ApplicationComponent  changed object                 Custom Data Access
+         7  ApplicationComponent  changed object  Home \& Away Policy Administration
+         8  ApplicationComponent  changed object              Customer Data  Access
+         9            DataObject  changed object              Customer File Data V2
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{obsolete relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}15}]:}                               source           source\_type  \textbackslash{}
+         0              Customer Data  Access  ApplicationComponent   
+         1  Home \& Away Policy Administration  ApplicationComponent   
+         2              Customer Data  Access  ApplicationComponent   
+         3             Policy Data Management  ApplicationComponent   
+         
+                           target           target\_type            relation\_type  \textbackslash{}
+         0        Risk Assessment  ApplicationComponent      ServingRelationship   
+         1  Customer Data  Access  ApplicationComponent  CompositionRelationship   
+         2     Customer File Data            DataObject       AccessRelationship   
+         3  Insurance Policy Data            DataObject       AccessRelationship   
+         
+                        state  
+         0  obsolete relation  
+         1  obsolete relation  
+         2  obsolete relation  
+         3  obsolete relation  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}16}]:}                               source           source\_type  \textbackslash{}
+         4                 Custom Data Access  ApplicationComponent   
+         5  Home \& Away Policy Administration  ApplicationComponent   
+         6             Policy Data Management  ApplicationComponent   
+         
+                           target           target\_type            relation\_type  \textbackslash{}
+         4  Customer File Data V2            DataObject       AccessRelationship   
+         5     Custom Data Access  ApplicationComponent  CompositionRelationship   
+         6  Insurance Policy Data            DataObject       AccessRelationship   
+         
+                   state  
+         4  new relation  
+         5  new relation  
+         6  new relation  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}relations\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{border relation}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:}                                source           source\_type  \textbackslash{}
+         9               Financial Application  ApplicationComponent   
+         10                       Store Policy   ApplicationFunction   
+         11  Home \& Away Policy Administration  ApplicationComponent   
+         12  Home \& Away Policy Administration  ApplicationComponent   
+         13                    Risk Assessment  ApplicationComponent   
+         14              Customer Data  Access  ApplicationComponent   
+         15                 Customer File Data            DataObject   
+         16  Home \& Away Policy Administration  ApplicationComponent   
+         
+                                        target           target\_type  \textbackslash{}
+         9   Home \& Away Policy Administration  ApplicationComponent   
+         10                 Customer File Data            DataObject   
+         11             Policy Data Management  ApplicationComponent   
+         12            Policy Creation Service    ApplicationService   
+         13                         Web portal  ApplicationComponent   
+         14            Call center application  ApplicationComponent   
+         15                      Customer File        BusinessObject   
+         16              Claim Data Management  ApplicationComponent   
+         
+                       relation\_type            state  
+         9       ServingRelationship  border relation  
+         10       AccessRelationship  border relation  
+         11  CompositionRelationship  border relation  
+         12  RealizationRelationship  border relation  
+         13      ServingRelationship  border relation  
+         14      ServingRelationship  border relation  
+         15  RealizationRelationship  border relation  
+         16  CompositionRelationship  border relation  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{p}{[}\PY{n}{goc\PYZus{}elements\PYZus{}df}\PY{o}{.}\PY{n}{state}\PY{o}{==}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{border object}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}               object\_type          state                     name
+         126  ApplicationComponent  border object    Claim Data Management
+         127        BusinessObject  border object            Customer File
+         128  ApplicationComponent  border object    Financial Application
+         129  ApplicationComponent  border object  Call center application
+         130  ApplicationComponent  border object   Policy Data Management
+         131    ApplicationService  border object  Policy Creation Service
+         132   ApplicationFunction  border object             Store Policy
+         133  ApplicationComponent  border object               Web portal
+\end{Verbatim}
+            
+    \hypertarget{proposed-extended-by-relationships.}{%
+\subsection{Proposed extended by
+relationships.}\label{proposed-extended-by-relationships.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} Propose extended by relations (based on assigned , composite and direction)}
+         \PY{c+c1}{\PYZsh{} For checking applying GOC in the model}
+         \PY{c+c1}{\PYZsh{} (find relations between changed and new elements)}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{n}{set\PYZus{}proposed\PYZus{}extended\PYZus{}by\PYZus{}relations} \PY{o}{=} \PY{n+nb}{set}\PY{p}{(}\PY{p}{)} \PY{c+c1}{\PYZsh{} []}
+         \PY{k}{for} \PY{n}{element\PYZus{}key} \PY{o+ow}{in} \PY{n}{set\PYZus{}tobe\PYZus{}elements}\PY{p}{:}
+             \PY{n}{element} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{element\PYZus{}key}\PY{p}{]}
+             \PY{k}{if} \PY{n}{element}\PY{o}{.}\PY{n}{changed} \PY{o}{==} \PY{k+kc}{True}\PY{p}{:}
+                 \PY{k}{for} \PY{n}{relation\PYZus{}key} \PY{o+ow}{in} \PY{n}{element}\PY{o}{.}\PY{n}{relation\PYZus{}tobe\PYZus{}ids}\PY{p}{:}
+                     \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}key}\PY{p}{]}        
+                     \PY{n}{source} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                     \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}    
+         
+                     \PY{k}{if} \PY{p}{(}\PY{p}{(}\PY{n}{relation}\PY{o}{.}\PY{n}{relation\PYZus{}type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{CompositionRelationship}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)} \PY{o+ow}{or} \PY{p}{(}
+                         \PY{n}{relation}\PY{o}{.}\PY{n}{relation\PYZus{}type} \PY{o}{==} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{AssignmentRelationship}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{)} \PY{o+ow}{and} \PY{n}{target}\PY{o}{.}\PY{n}{new}\PY{p}{:}
+                         \PY{n}{set\PYZus{}proposed\PYZus{}extended\PYZus{}by\PYZus{}relations}\PY{o}{.}\PY{n}{add}\PY{p}{(}\PY{n}{relation\PYZus{}key}\PY{p}{)}
+                         \PY{c+c1}{\PYZsh{}set\PYZus{}proposed\PYZus{}extended\PYZus{}by\PYZus{}relations.append([element.name, element.id, target.name, target.id])}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Proposed extended\PYZus{}by relationships:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{relation\PYZus{}id} \PY{o+ow}{in} \PY{n}{set\PYZus{}proposed\PYZus{}extended\PYZus{}by\PYZus{}relations}\PY{p}{:}
+             \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}id}\PY{p}{]}        
+             \PY{n}{source} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+             \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{[}\PY{l+s+si}{\PYZob{}relation.relation\PYZus{}type\PYZcb{}}\PY{l+s+s2}{]: [}\PY{l+s+si}{\PYZob{}source.element\PYZus{}type\PYZcb{}}\PY{l+s+s2}{] }\PY{l+s+si}{\PYZob{}source.name\PYZcb{}}\PY{l+s+s2}{ \PYZhy{}\PYZgt{} [}\PY{l+s+si}{\PYZob{}target.element\PYZus{}type\PYZcb{}}\PY{l+s+s2}{] }\PY{l+s+si}{\PYZob{}target.name\PYZcb{}}\PY{l+s+s2}{ }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Proposed extended\_by relationships:
+-----------------------------------
+[CompositionRelationship]: [ApplicationComponent] Home \& Away Policy Administration -> [ApplicationComponent] Custom Data Access 
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} Check sets }
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{New elements equal elements in ToBe difference elements in Asis : }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{( set\PYZus{}new\PYZus{}elements == set\PYZus{}tobe\PYZus{}elements \PYZhy{} set\PYZus{}asis\PYZus{}elements )\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Obsolete elements equal AsIs difference ekements in ToBe        : }\PY{l+s+se}{\PYZbs{}}
+         \PY{l+s+s1}{\PYZob{}}\PY{l+s+s1}{ set\PYZus{}obsolete\PYZus{}elements == ( set\PYZus{}asis\PYZus{}elements \PYZhy{} set\PYZus{}tobe\PYZus{}elements ) \PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+New elements equal elements in ToBe difference elements in Asis : True
+Obsolete elements equal AsIs difference ekements in ToBe        : True
+
+    \end{Verbatim}
+
+    Use set math for validating sets on GOC:
+
+\begin{itemize}
+\tightlist
+\item
+  set\_asis\_relations
+\item
+  set\_tobe\_relations
+\item
+  set\_asis\_elements
+\item
+  set\_tobe\_elements
+\item
+  set\_obsolete\_elements
+\item
+  set\_new\_elements
+\item
+  set\_border\_elements
+\item
+  set\_changed\_elements
+\item
+  set\_unchanged\_elements
+\item
+  set\_obsolete\_relations
+\item
+  set\_new\_relations
+\item
+  set\_extended\_by\_relations
+\item
+  set\_replaced\_by\_relations
+\item
+  set\_border\_relations
+\item
+  set\_proposed\_extended\_by\_relations
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} Which elements are unchanged and are no border elements}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{c+c1}{\PYZsh{} for element\PYZus{}id in (set\PYZus{}unchanged\PYZus{}elements \PYZhy{} set\PYZus{}border\PYZus{}elements):}
+         \PY{c+c1}{\PYZsh{}     print(elements\PYZus{}dict[element\PYZus{}id])}
+\end{Verbatim}
+
+
+    \hypertarget{print-gap-of-change-sets.}{%
+\subsection{Print Gap of change sets.}\label{print-gap-of-change-sets.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} List GOC relationships sets}
+         \PY{c+c1}{\PYZsh{} \PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}
+         \PY{k}{def} \PY{n+nf}{print\PYZus{}relation\PYZus{}set\PYZus{}doc}\PY{p}{(}\PY{n}{\PYZus{}set}\PY{p}{)}\PY{p}{:}
+             \PY{n}{line\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{relation\PYZus{}id} \PY{o+ow}{in} \PY{n}{\PYZus{}set}\PY{p}{:}
+                 
+                 \PY{n}{relation} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation\PYZus{}id}\PY{p}{]}
+                 \PY{k}{if} \PY{n}{relation}\PY{o}{.}\PY{n}{rel\PYZus{}to\PYZus{}rel} \PY{o}{==} \PY{k+kc}{False}\PY{p}{:}
+                     \PY{n}{source} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                     \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}
+                 \PY{k}{else}\PY{p}{:}
+                     \PY{n}{source} \PY{o}{=} \PY{n}{relations\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{source}\PY{p}{]}
+                     \PY{n}{target} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{relation}\PY{o}{.}\PY{n}{target}\PY{p}{]}            
+                     
+                 \PY{n}{line\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{(}\PY{l+s+si}{\PYZob{}source.name\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}target.name\PYZcb{}}\PY{l+s+s2}{) [}\PY{l+s+si}{\PYZob{}relation.relation\PYZus{}type\PYZcb{}}\PY{l+s+s2}{], }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)} 
+             \PY{n}{line\PYZus{}doc} \PY{o}{=} \PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{.join(line\PYZus{}list)\PYZcb{} }\PY{l+s+s2}{\PYZdq{}}
+             \PY{k}{return} \PY{n}{line\PYZus{}doc}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship sets:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{rel\PYZus{}set}\PY{p}{,} \PY{n}{state} \PY{o+ow}{in} \PY{n}{relation\PYZus{}sets}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}state\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZob{}\PYZob{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{print\PYZus{}relation\PYZus{}set\PYZus{}doc(rel\PYZus{}set)\PYZcb{}\PYZcb{}\PYZcb{} }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Relationship sets:
+------------------
+obsolete relation = \{ (Customer Data  Access, Risk Assessment) [ServingRelationship], 
+ (Home \& Away Policy Administration, Customer Data  Access) [CompositionRelationship], 
+ (Customer Data  Access, Customer File Data) [AccessRelationship], 
+ (Policy Data Management, Insurance Policy Data) [AccessRelationship], 
+ \} 
+
+new relation = \{ (Custom Data Access, Customer File Data V2) [AccessRelationship], 
+ (Home \& Away Policy Administration, Custom Data Access) [CompositionRelationship], 
+ (Policy Data Management, Insurance Policy Data) [AccessRelationship], 
+ \} 
+
+extended by relation = \{ (Home \& Away Policy Administration, Custom Data Access) [AssociationRelationship], 
+ \} 
+
+replaced by relation = \{ (Customer Data  Access, Custom Data Access) [AssociationRelationship], 
+ \} 
+
+border relation = \{ (Financial Application, Home \& Away Policy Administration) [ServingRelationship], 
+ (Store Policy, Customer File Data) [AccessRelationship], 
+ (Home \& Away Policy Administration, Policy Data Management) [CompositionRelationship], 
+ (Home \& Away Policy Administration, Policy Creation Service) [RealizationRelationship], 
+ (Risk Assessment, Web portal) [ServingRelationship], 
+ (Customer Data  Access, Call center application) [ServingRelationship], 
+ (Customer File Data, Customer File) [RealizationRelationship], 
+ (Home \& Away Policy Administration, Claim Data Management) [CompositionRelationship], 
+ \} 
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{k}{def} \PY{n+nf}{print\PYZus{}element\PYZus{}set\PYZus{}doc}\PY{p}{(}\PY{n}{\PYZus{}set}\PY{p}{)}\PY{p}{:}
+             \PY{n}{line\PYZus{}list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{element\PYZus{}id} \PY{o+ow}{in} \PY{n}{\PYZus{}set}\PY{p}{:}
+                 \PY{n}{element} \PY{o}{=} \PY{n}{elements\PYZus{}dict}\PY{p}{[}\PY{n}{element\PYZus{}id}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{}         line\PYZus{}list.append([element.element\PYZus{}type, element.name \PYZbs{}}
+         \PY{c+c1}{\PYZsh{}                         , element.is\PYZus{}part\PYZus{}of\PYZus{}asis, element.is\PYZus{}part\PYZus{}of\PYZus{}tobe])  }
+                 \PY{n}{line\PYZus{}list}\PY{o}{.}\PY{n}{append}\PY{p}{(}
+                     \PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}element.element\PYZus{}type\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+si}{\PYZob{}element.name\PYZcb{}}\PY{l+s+s2}{, }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{str(element.is\PYZus{}part\PYZus{}of\PYZus{}asis)\PYZcb{}, }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{str(element.is\PYZus{}part\PYZus{}of\PYZus{}tobe)\PYZcb{} }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+             \PY{n}{line\PYZus{}doc} \PY{o}{=} \PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{.join(line\PYZus{}list)\PYZcb{} }\PY{l+s+s2}{\PYZdq{}}
+             \PY{k}{return} \PY{n}{line\PYZus{}doc}
+\end{Verbatim}
+
+
+    \hypertarget{relationships-sets}{%
+\subsection{Relationships sets}\label{relationships-sets}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Relationship sets:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{k}{for} \PY{n}{el\PYZus{}set}\PY{p}{,} \PY{n}{state} \PY{o+ow}{in} \PY{n}{element\PYZus{}sets}\PY{p}{:}
+             \PY{n+nb}{print}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+si}{\PYZob{}state\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZob{}\PYZob{}}\PY{l+s+s2}{\PYZob{}}\PY{l+s+s2}{print\PYZus{}element\PYZus{}set\PYZus{}doc(el\PYZus{}set)\PYZcb{}\PYZcb{}\PYZcb{} }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Relationship sets:
+------------------
+new object = \{ ApplicationComponent, Custom Data Access, False, True 
+ DataObject, Customer File Data V2, False, True 
+ \} 
+
+obsolete object = \{ ApplicationComponent, Customer Data  Access, True, False 
+ DataObject, Customer File Data, True, False 
+ \} 
+
+changed object = \{ ApplicationComponent, Risk Assessment, True, True 
+ DataObject, Customer File Data, True, False 
+ ApplicationComponent, Custom Data Access, False, True 
+ ApplicationComponent, Home \& Away Policy Administration, True, True 
+ ApplicationComponent, Customer Data  Access, True, False 
+ DataObject, Customer File Data V2, False, True 
+ \} 
+
+unchanged object = \{ Principle, Client Satisfaction Goal, False, False 
+ TechnologyService, Network Service, False, False 
+ BusinessProcess, Pay, False, False 
+ BusinessFunction, Claims Handling, False, False 
+ BusinessProcess, Collect Premium, False, False 
+ BusinessRole, Insurant, False, False 
+ BusinessObject, Car Insurance Policy, False, False 
+ ApplicationComponent, CRM System, False, False 
+ BusinessInterface, mail, False, False 
+ Node, Firewall, False, False 
+ BusinessObject, Legal aid  Insurance Policy, False, False 
+ ApplicationService, Claim InfoServ, False, False 
+ BusinessInterface, phone, False, False 
+ ApplicationFunction, Calculate Risk, False, False 
+ ApplicationFunction, Calculate Premium, False, False 
+ SystemSoftware, CICS, False, False 
+ BusinessRole, Customer, False, False 
+ BusinessRole, Customer's Bank, False, False 
+ BusinessFunction, Financial Handling, False, False 
+ BusinessInterface, phone, False, False 
+ ApplicationFunction, Create Policy, False, False 
+ BusinessFunction, Contracting, False, False 
+ BusinessCollaboration, collaboration, False, False 
+ BusinessActor, Director of Finance, False, False 
+ BusinessActor, Document Processing SSC, False, False 
+ BusinessActor, Front Office, False, False 
+ CommunicationNetwork, BIBIT, False, False 
+ BusinessActor, Director of Operations, False, False 
+ ApplicationComponent, Bank System, False, False 
+ BusinessService, Insurance Application Service, False, False 
+ ApplicationComponent, Claim Data Management, True, True 
+ TechnologyService, File Service, False, False 
+ BusinessProcess, Handle Claim, False, False 
+ Device, Unix Server, False, False 
+ BusinessActor, Product Development, False, False 
+ TechnologyService, Customer File Service, False, False 
+ TechnologyService, Database Service, False, False 
+ ApplicationFunction, Policy Creation, False, False 
+ Principle, Costs Goal, False, False 
+ ApplicationComponent, Policy Data Management, True, True 
+ BusinessProcess, Close Contract, False, False 
+ BusinessProcess, Inform Customer, False, False 
+ BusinessActor, Board, False, False 
+ BusinessEvent, Damage Occured, False, False 
+ BusinessActor, Customer Relations, False, False 
+ Node, Firewall, False, False 
+ BusinessInteraction, Check and  Sign Contract, False, False 
+ BusinessRole, Insurer, False, False 
+ Principle, Licence Principle, False, False 
+ Principle, TCO Goal, False, False 
+ BusinessInterface, GIM, False, False 
+ Principle, Infrastructure Principle, False, False 
+ BusinessActor, Director of Sales, False, False 
+ ApplicationService, CIS, False, False 
+ BusinessRole, Intermediary, False, False 
+ BusinessActor, Car, False, False 
+ BusinessActor, Intermediary Relations, False, False 
+ Principle, Occupancy Principle, False, False 
+ Device, Unix Server, False, False 
+ TechnologyService, Claim Files Service, False, False 
+ Value, Be Insured, False, False 
+ BusinessActor, Home  \&  Away, False, False 
+ BusinessCollaboration, Contracting, False, False 
+ BusinessService, Claim Registration Service, False, False 
+ CommunicationNetwork, LAN, False, False 
+ BusinessObject, Damage Claim, False, False 
+ BusinessInterface, e-mail, False, False 
+ BusinessActor, Back Office, False, False 
+ BusinessService, Customer data mutation Service, False, False 
+ Principle, Component Principle, False, False 
+ CommunicationNetwork, LAN, False, False 
+ Node, Unix Server Farm, False, False 
+ BusinessObject, Customer File, False, False 
+ BusinessService, Customer Information Service, False, False 
+ DataObject, Insurance Request Data, False, False 
+ SystemSoftware, DBMS, False, False 
+ BusinessFunction, Asset Management, False, False 
+ BusinessProcess, Accept, False, False 
+ Device, NAS File Server, False, False 
+ BusinessObject, Liability  Insurance Policy, False, False 
+ BusinessActor, Finance, False, False 
+ BusinessObject, Customer, False, False 
+ SystemSoftware, Financial Software, False, False 
+ BusinessObject, Insurance Policy, False, False 
+ SystemSoftware, Message Queing, False, False 
+ BusinessActor, Archisurance, False, False 
+ ApplicationFunction, Store Policy, False, False 
+ ApplicationComponent, Web portal, False, False 
+ DataObject, Damage Claim Data, True, True 
+ Principle, One Stop Principle, False, False 
+ BusinessProcess, Valuate, False, False 
+ BusinessActor, Legal Aid, False, False 
+ ApplicationService, Policy Creation Service, False, False 
+ ApplicationComponent, Financial Application, False, False 
+ ApplicationComponent, Call center application, False, False 
+ BusinessActor, Client, False, False 
+ Device, BIBIT Server, False, False 
+ Principle, Treatment Time Principle, False, False 
+ DataObject, Insurance Policy Data, True, True 
+ BusinessObject, Travel  Insurance Policy, False, False 
+ Node, Mainframe, False, False 
+ BusinessCollaboration, Negotiation, False, False 
+ BusinessObject, Insurance Request, False, False 
+ BusinessObject, Home Insurance Policy, False, False 
+ Device, Admin Server, False, False 
+ BusinessEvent, Request for Insurance, False, False 
+ BusinessProcess, Register, False, False 
+ BusinessFunction, Maintaining Customer Relations, False, False 
+ BusinessFunction, Maintaining Intermediary Relations, False, False 
+ BusinessProcess, Create Contract, False, False 
+ BusinessService, Claims Payment Service, False, False 
+ BusinessService, Premium Payment Service, False, False 
+ BusinessInteraction, Formalise Request, False, False 
+ BusinessActor, HRM, False, False 
+ Representation, Claim Form, False, False 
+ Contract, Travel Insurance Policy, False, False 
+ \} 
+
+border object = \{ ApplicationComponent, Claim Data Management, True, True 
+ BusinessObject, Customer File, False, False 
+ ApplicationComponent, Financial Application, False, False 
+ ApplicationComponent, Call center application, False, False 
+ ApplicationComponent, Policy Data Management, True, True 
+ ApplicationService, Policy Creation Service, False, False 
+ ApplicationFunction, Store Policy, False, False 
+ ApplicationComponent, Web portal, False, False 
+ \} 
+
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
