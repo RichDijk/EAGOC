@@ -3,7 +3,8 @@ Python notebook for analysing the Gap of Change modelled in ArchiMate. This is p
 
 The code is redundant in order to be easy adaptable for certain other analytics.
 
-A first impression is given by ea_goc.slides.html
+A first impression is given by the ApplicationStructureView.JPG for the view of the Gap of Change.
+The complete code and results of this example is in ea_goc.pdf [would be nice to stick to 80 chards ;)]
 
 # Installation
 Dependencies: 
