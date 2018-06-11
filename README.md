@@ -1,7 +1,7 @@
 # EAGOC
   Python notebook for analysing the Gap of Change modelled in ArchiMate. This is part of a thesis testing the Gap Of Change as poposed by Bakelaar et al 2017. [BakelaarRoubtsovaJoosten.pdf](BakelaarRoubtsovaJoosten.pdf)
 
-The code is redundant in order to be easy adaptable for certain other analytics.
+The code in the notebook is redundant in order to be easy adaptable for certain other analytics.
 
 A first impression is given by the [ApplicationStructureView.jpg](ApplicationStructureView.JPG) for the view of the Gap of Change.
 The complete code and results of this example is in [ea_goc.pdf](ea_goc.pdf) [would be nice to stick to 80 chards ;)]
