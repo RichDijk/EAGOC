@@ -4,7 +4,7 @@
 The code in the notebook is redundant in order to be easy adaptable for certain other analytics.
 
 A first impression is given by the [ApplicationStructureView.jpg](ApplicationStructureView.JPG) for the view of the Gap of Change.
-The complete code and results of this example is in [ea_goc.pdf](ea_goc.pdf) [would be nice to stick to 80 chards ;)]
+The complete code and results of this example is in [ea_goc.pdf](ea_goc.pdf).
 On page 10 counting result begin.
 
 # Installation
